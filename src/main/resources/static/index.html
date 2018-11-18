@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+	<title>Live Chat</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+	<link rel="stylesheet" href="chatstyle.css">
+	  <script src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.2.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-primary" style="right:0px;bottom:0px;position:fixed;width:400px">
+                <div class="panel-heading" id="accordion">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                    </div>
+                </div>
+            <div class="panel-collapse collapse" id="collapseOne">
+                <div class="panel-body" id="chathistory">
+                    <ul class="chat" id="chatrecord">
+                        <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=WE" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Web Support</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                </div>
+                                <p>
+                                    Welcome to Web Support BOT!
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                       <form id="frmchat" action="./chat" onsubmit=" return submitform()" method="post" >
+				<fieldset>
+					 <span class="input-group-btn">
+					<input type="text" id="uiMessage" class="form-control input-sm" autocomplete="off" name="uimessage" placeholder="Type your message…" />
+				      <input type="hidden" id="message" name="message"  value=""/>	 	
+				 	<input type="hidden" name="send" />
+					<input type="hidden" id="init" name="init" value="true"/>
+					<input type="hidden" id="username" name="username" value="varun"/>
+					<input type="hidden" id="botname"  value="Harry"/> 
+                    <button type="submit" class="btn btn-warning btn-sm" id="btn-chat">Send</button>
+                        </span>
+				</fieldset>
+						</form>
+</div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="formUtils.js"></script>
+<script src="newfunctions.js"></script>
+</body>
+</html>

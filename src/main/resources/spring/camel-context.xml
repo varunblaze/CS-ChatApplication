@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+    <!-- START SNIPPET: example -->
+    <camelContext id="camel" streamCache="true" xmlns="http://camel.apache.org/schema/spring">
+        <restConfiguration bindingMode="auto" component="restlet"
+            enableCORS="true" port="10000"/>
+        <rest id="rest-36594868-75e1-4f9c-a697-25f284396641">
+            <post id="post-11d31788-bf14-4694-805a-1d372fcc5552" uri="/converse">
+                <to uri="direct:conversationtrigger"/>
+            </post>
+            <post id="post-03c86100-aa4e-4bb4-835e-02be9a0aed09" uri="/sendtotonotification">
+                <to uri="direct:pushtonotification"/>
+            </post>
+            <post id="post-941d5855-a08a-44bf-9349-59defc843c47" uri="/endconversation">
+                <to uri="direct:endconversation"/>
+            </post>
+        </rest>
+        <route id="conversationtrigger">
+            <!-- get the origin IP and user name -->
+            <!-- Append IP to user name and cache -->
+            <!-- send to chatscript -->
+            <!-- sent response from chatscript to pushtonotification-->
+            <from id="_from1" uri="direct:conversationtrigger"/>
+            <to id="_to1" uri="direct:pushtonotification"/>
+            <log id="_log1" message="direct:conversationtrigger"/>
+        </route>
+        <route id="pushtonotification">
+            <from id="_from2" uri="direct:pushtonotification"/>
+            <log id="_log2" message="direct:pushtonotification"/>
+        </route>
+        <route id="endconversation">
+            <from id="_from3" uri="direct:pushtonotification"/>
+            <log id="_log3" message="direct:pushtonotification"/>
+        </route>
+    </camelContext>
+</beans>
