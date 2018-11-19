@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.dzone.sboot.camel</groupId>
-	<artifactId>SpringBootCamelIntegration</artifactId>
+	<groupId>org.oldmadras</groupId>
+	<artifactId>CSChatApplication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>SpringBootCamelIntegration</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project in Spring Boot for ChatScript Camel component</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
