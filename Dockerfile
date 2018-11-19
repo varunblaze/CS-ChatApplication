@@ -1,5 +1,5 @@
 FROM maven:3.5-jdk-8-alpine
-WORKDIR usr/src/oldmadras/depends
+WORKDIR ./depends
 RUN mvn install:install-file -Dfile=camel-chatscript-1.0-SNAPSHOT.jar
 
 FROM openjdk:8-jre-slim
