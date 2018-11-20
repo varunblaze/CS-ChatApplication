@@ -7,6 +7,5 @@ find . -name mvn
 find . -name javac
 cd -
 export M2_HOME=/opt/rh/rh-maven35/root/usr/share/maven
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.e17_5.x86_64
 ls /tmp/src
 /opt/rh/rh-maven35/root/usr/share/maven/bin/mvn install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar
