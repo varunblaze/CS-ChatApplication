@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Running custom assemble"
+ls /tmp/
+mvn install:install-file -Dfile=/tmp/s2i/src/depends/camel-chatscript-1.0-SNAPSHOT.jar
