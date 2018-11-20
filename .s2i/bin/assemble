@@ -117,7 +117,6 @@ if [ -z "${MAVEN_OPTS}" -a -x "$jvm_option_file" ] ; then
 export MAVEN_OPTS="$($jvm_option_file)"
 echo "Setting MAVEN_OPTS to ${MAVEN_OPTS}"
 fi
-mvn install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar
 
 # Default args: no tests, if a module is specified, only build this module
 local maven_args=${MAVEN_ARGS:--e -Popenshift -DskipTests -Dcom.redhat.xpaas.repo.redhatga -Dfabric8.skip=true clean package}
@@ -161,13 +160,15 @@ cd ${old_dir}
 
 echo "=================================================================="
 echo "Starting S2I Java Build ....."
+mvn install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar
 build_dir=$(get_output_dir)
 check_error "Cannot get output dir: $build_dir" $?
 if [ -f "${S2I_SOURCE_DIR}/pom.xml" ]; then
 echo "Maven build detected"
 # If a pom.xml is present use maven
 setup_maven
-build_maven ${build_dir} ${DEPLOYMENTS_DIR}
+mvn install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar
+#build_maven ${build_dir} ${DEPLOYMENTS_DIR}
 elif [ -f "${S2I_SOURCE_DIR}/Dockerfile" ]; then
 # This is a S2I binary build coming from fabric8-maven-plugin
 echo "S2I binary build from fabric8-maven-plugin detected"
