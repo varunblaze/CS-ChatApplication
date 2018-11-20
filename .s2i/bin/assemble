@@ -117,11 +117,13 @@ echo "Setting MAVEN_OPTS to ${MAVEN_OPTS}"
 fi
 
 # Default args: no tests, if a module is specified, only build this module
-local maven_args=${MAVEN_ARGS:--e -Popenshift -DskipTests -Dcom.redhat.xpaas.repo.redhatga -Dfabric8.skip=true clean package}
+local maven_args=${MAVEN_ARGS:--e -Popenshift -DskipTests -Dcom.redhat.xpaas.repo.redhatga -Dfabric8.skip=true package}
 
 # Use batch mode (CLOUD-579)
 echo "Found pom.xml ... "
 local mvn_cmd="${maven_env_args} ${maven_args} --batch-mode -Djava.net.preferIPv4Stack=true ${MAVEN_ARGS_APPEND}"
+mvn ${maven_env_args} install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar -DgroupId=org.apache.camel.component -DartifactId=camel-chatscript -Dversion=1.0-SNAPSHOT -Dpackaging=jar
+
 echo "Running 'mvn ${mvn_cmd}'"
 
 local old_dir=$(pwd)
@@ -162,7 +164,6 @@ if [ -f "${S2I_SOURCE_DIR}/pom.xml" ]; then
 echo "Maven build detected"
 # If a pom.xml is present use maven
 setup_maven
-mvn install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar -DgroupId=org.apache.camel.component -DartifactId=camel-chatscript -Dversion=1.0-SNAPSHOT -Dpackaging=jar
 build_maven ${build_dir} ${DEPLOYMENTS_DIR}
 elif [ -f "${S2I_SOURCE_DIR}/Dockerfile" ]; then
 # This is a S2I binary build coming from fabric8-maven-plugin
