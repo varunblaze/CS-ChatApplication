@@ -131,7 +131,7 @@ check_error "changing directory to ${S2I_SOURCE_DIR}" $?
 # =========
 # Run Maven
 mvn ${maven_env_args} --version
-#mvn ${mvn_cmd}
+mvn ${mvn_cmd}
 check_error "Maven build" $?
 
 # ==============
