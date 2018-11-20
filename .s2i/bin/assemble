@@ -117,6 +117,8 @@ if [ -z "${MAVEN_OPTS}" -a -x "$jvm_option_file" ] ; then
 export MAVEN_OPTS="$($jvm_option_file)"
 echo "Setting MAVEN_OPTS to ${MAVEN_OPTS}"
 fi
+mvn install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar
+
 # Default args: no tests, if a module is specified, only build this module
 local maven_args=${MAVEN_ARGS:--e -Popenshift -DskipTests -Dcom.redhat.xpaas.repo.redhatga -Dfabric8.skip=true clean package}
 
@@ -132,7 +134,6 @@ check_error "changing directory to ${S2I_SOURCE_DIR}" $?
 # =========
 # Run Maven
 echo "adding camel-chatscript dep"
-mvn ${maven_env_args} install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar
 echo "return code $?"
 mvn ${maven_env_args} --version
 #mvn ${mvn_cmd}
