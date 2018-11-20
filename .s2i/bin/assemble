@@ -132,11 +132,10 @@ check_error "changing directory to ${S2I_SOURCE_DIR}" $?
 # =========
 # Run Maven
 echo "adding camel-chatscript dep"
-
 mvn ${maven_env_args} install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar
-
+echo "return code $?"
 mvn ${maven_env_args} --version
-mvn ${mvn_cmd}
+#mvn ${mvn_cmd}
 check_error "Maven build" $?
 
 # ==============
