@@ -3,7 +3,7 @@
 # Command line arguments given to this script
 args="$*"
 
-
+echo "********************args=$args"
 # Global S2I variable setup
 source /usr/local/s2i/s2i-setup
 cd /usr/local/s2i
@@ -13,6 +13,8 @@ export JAVA_OPTIONS="${JAVA_OPTIONS:+${JAVA_OPTIONS} }$(/opt/jolokia/jolokia-opt
 
 echo "starting chat script"
 chmod +x /tmp/ChatScriptNLP/BINARIES/LinuxChatScript64
+echo "permission changed $?"
+ls -lrt /tmp/ChatScriptNLP/BINARIES/
 /tmp/ChatScriptNLP/BINARIES/LinuxChatScript64 &
 echo "Started CS $?"
 echo "Deploy dir=${DEPLOYMENTS_DIR}"
@@ -21,5 +23,6 @@ if [ -f "${DEPLOYMENTS_DIR}/bin/run.sh" ]; then
     exec ${DEPLOYMENTS_DIR}/bin/run.sh $args ${JAVA_ARGS}
 else
     echo "Starting the Java application using /opt/run-java/run-java.sh ..."
+    ls /opt/run-java/run-java.sh
     exec /opt/run-java/run-java.sh $args ${JAVA_ARGS}
 fi
