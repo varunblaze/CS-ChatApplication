@@ -121,13 +121,14 @@ local mvn_cmd="${maven_env_args} ${maven_args} --batch-mode -Djava.net.preferIPv
 mvn ${maven_env_args} install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar -DgroupId=org.apache.camel.component -DartifactId=camel-chatscript -Dversion=1.0-SNAPSHOT -Dpackaging=jar
 
 echo "Downloading CS from https://github.com/bwilcox-1234/ChatScript/archive/master.zip"
-curl -L https://github.com/bwilcox-1234/ChatScript/archive/master.zip > /tmp/ChatScriptNLP.zip 
+curl -L https://github.com/bwilcox-1234/ChatScript/archive/master.zip > /tmp/ChatScriptNLP2.zip 
 #echo "-----Start Unzip chatscript---"
 #cd /tmp/src/depends/
-unzip /tmp/ChatScriptNLP.zip
+unzip /tmp/ChatScriptNLP2.zip
 cp /tmp/src/RAWDATA/files* /tmp/ChatScript-master/RAWDATA/
 cp -R /tmp/src/RAWDATA/* /tmp/ChatScript-master/RAWDATA/
 chmod 755 /tmp/ChatScript-master/BINARIES/LinuxChatScript64
+ls -lrt /tmp
 echo "-----End Unzip chatscript---"
 
 echo "Running 'mvn ${mvn_cmd}'"
