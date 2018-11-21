@@ -3,11 +3,7 @@ package com.oldmadras.camel.routes;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
-import com.oldmadras.annachikadai.integrations.TwilioUtils;
-import com.oldmadras.camel.processors.CallBackProcessor;
-import com.oldmadras.camel.processors.ChatHandler;
-import com.oldmadras.camel.processors.WhatsappProcessor;
-
+import com.oldmadras.camel.processors.*;
 @Component
 public class CamelRoutes extends RouteBuilder{
 
@@ -20,9 +16,10 @@ public class CamelRoutes extends RouteBuilder{
 		 
 	from ("direct:chat")
       .to("ChatScript://localhost:1024/Annachi")
-  //    .process(new CallBackProcessor());
+  //    
       .log("Chat reply: ${body}")
-      .process(new WhatsappProcessor());
+     // .process(new WhatsappProcessor());
+      .process(new CallBackProcessor());
 	 
 	from ("direct:reset")
      .to("ChatScript://localhost:1024/Annachi?resetchat=true")
