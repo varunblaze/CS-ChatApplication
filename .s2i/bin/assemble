@@ -120,16 +120,15 @@ echo "Found pom.xml ... "
 local mvn_cmd="${maven_env_args} ${maven_args} --batch-mode -Djava.net.preferIPv4Stack=true ${MAVEN_ARGS_APPEND}"
 mvn ${maven_env_args} install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar -DgroupId=org.apache.camel.component -DartifactId=camel-chatscript -Dversion=1.0-SNAPSHOT -Dpackaging=jar
 
-echo "-----Start Unzip chatscript---"
-cd /tmp/src/depends/
-unzip /tmp/src/depends/ChatScriptNLP.zip -d /tmp
-cp /tmp/src/RAWDATA/files* /tmp/ChatScriptNLP/RAWDATA/
-cp -R /tmp/src/RAWDATA/* /tmp/ChatScriptNLP/RAWDATA
-chmod 777 /tmp/ChatScriptNLP/BINARIES/*
-ls -lrt /tmp/ChatScriptNLP/BINARIES/*
-cd -
+echo "Downloading CS from https://github.com/bwilcox-1234/ChatScript/archive/master.zip"
+curl -L https://github.com/bwilcox-1234/ChatScript/archive/master.zip > /tmp/ChatScriptNLP.zip 
+#echo "-----Start Unzip chatscript---"
+#cd /tmp/src/depends/
+unzip /tmp/ChatScriptNLP.zip
+cp /tmp/src/RAWDATA/files* /tmp/ChatScript-master/RAWDATA/
+cp -R /tmp/src/RAWDATA/* /tmp/ChatScript-master/RAWDATA/
+chmod 755 /tmp/ChatScript-master/BINARIES/LinuxChatScript64
 echo "-----End Unzip chatscript---"
-
 
 echo "Running 'mvn ${mvn_cmd}'"
 
