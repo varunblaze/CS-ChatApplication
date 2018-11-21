@@ -2,8 +2,8 @@
 
 # Command line arguments given to this script
 args="$*"
-
 echo "********************args=$args"
+ls -lrt /tmp
 # Global S2I variable setup
 source /usr/local/s2i/s2i-setup
 cd /usr/local/s2i
