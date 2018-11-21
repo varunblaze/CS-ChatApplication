@@ -127,7 +127,7 @@ curl -L https://github.com/bwilcox-1234/ChatScript/archive/master.zip > /tmp/Cha
 unzip /tmp/ChatScriptNLP2.zip
 cp /tmp/src/RAWDATA/files* /tmp/ChatScript-master/RAWDATA/
 cp -R /tmp/src/RAWDATA/* /tmp/ChatScript-master/RAWDATA/
-chmod 755 /tmp/ChatScript-master/BINARIES/LinuxChatScript64
+chmod -R 777 /tmp/ChatScript-master/BINARIES/*
 ls -lrt /tmp
 echo "-----End Unzip chatscript---"
 cd -
