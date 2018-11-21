@@ -128,8 +128,8 @@ mvn ${maven_env_args} install:install-file -Dfile=/tmp/src/depends/camel-chatscr
 echo "-----Start Unzip chatscript---"
 cd /tmp/src/depends/
 unzip /tmp/src/depends/ChatScriptNLP.zip -d /tmp
-cp src/RAWDATA/files* /tmp/ChatScriptNLP/RAWDATA/
-cp -R src/RAWDATA/* /tmp/ChatScriptNLP/RAWDATA
+cp /tmp/src/RAWDATA/files* /tmp/ChatScriptNLP/RAWDATA/
+cp -R /tmp/src/RAWDATA/* /tmp/ChatScriptNLP/RAWDATA
 ls /tmp/ChatScriptNLP/RAWDATA
 cd -
 echo "-----End Unzip chatscript---"
