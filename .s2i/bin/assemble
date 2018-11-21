@@ -4,6 +4,7 @@ echo "running custom assembly"
 echo "-------------------------------"
 ls /tmp/src/
 ls /tmp/src/depends
+which wget
 echo "-------------------------------"
 
 if [ "${SCRIPT_DEBUG}" = "true" ] ; then
@@ -123,6 +124,16 @@ local maven_args=${MAVEN_ARGS:--e -Popenshift -DskipTests -Dcom.redhat.xpaas.rep
 echo "Found pom.xml ... "
 local mvn_cmd="${maven_env_args} ${maven_args} --batch-mode -Djava.net.preferIPv4Stack=true ${MAVEN_ARGS_APPEND}"
 mvn ${maven_env_args} install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar -DgroupId=org.apache.camel.component -DartifactId=camel-chatscript -Dversion=1.0-SNAPSHOT -Dpackaging=jar
+
+echo "-----Start Unzip chatscript---"
+cd /tmp/src/depends/
+unzip /tmp/src/depends/ChatScriptNLP.zip -d /tmp
+cp src/RAWDATA/files* /tmp/ChatScriptNLP/RAWDATA/
+cp src/RAWDATA/* /tmp/ChatScriptNLP/RAWDATA
+ls /tmp/ChatScriptNLP/RAWDATA
+cd -
+echo "-----End Unzip chatscript---"
+
 
 echo "Running 'mvn ${mvn_cmd}'"
 
