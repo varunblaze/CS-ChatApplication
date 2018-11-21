@@ -129,7 +129,7 @@ echo "-----Start Unzip chatscript---"
 cd /tmp/src/depends/
 unzip /tmp/src/depends/ChatScriptNLP.zip -d /tmp
 cp src/RAWDATA/files* /tmp/ChatScriptNLP/RAWDATA/
-cp src/RAWDATA/* /tmp/ChatScriptNLP/RAWDATA
+cp -R src/RAWDATA/* /tmp/ChatScriptNLP/RAWDATA
 ls /tmp/ChatScriptNLP/RAWDATA
 cd -
 echo "-----End Unzip chatscript---"
