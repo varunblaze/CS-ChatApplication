@@ -3,14 +3,19 @@
 # Command line arguments given to this script
 args="$*"
 
+cd /usr/local/
+
 # Global S2I variable setup
 source `dirname "$0"`/s2i-setup
+pwd
+ls /opt/
+echo $0
 
 # Always include jolokia-opts, which can be empty if switched off via env
 export JAVA_OPTIONS="${JAVA_OPTIONS:+${JAVA_OPTIONS} }$(/opt/jolokia/jolokia-opts) $(source /opt/hawkular/hawkular-opts && get_hawkular_opts)"
 
 echo "starting chat script"
-./tmp/ChatScriptNLP/BINARIES/LinuxChatScript64 &
+/tmp/ChatScriptNLP/BINARIES/LinuxChatScript64 &
 echo "Started CS $?"
 echo "Deploy dir=${DEPLOYMENTS_DIR}"
 if [ -f "${DEPLOYMENTS_DIR}/bin/run.sh" ]; then
