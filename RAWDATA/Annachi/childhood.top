@@ -1,0 +1,14 @@
+TOPIC: ~childhood (buy need "run away")
+#!x  This topic is a sample of a simple topic, with good indentation style.
+#!x  It is well commented with annotations for :abstract and :verify.
+
+t: Do you want to buy something? 
+
+    #! sure
+    a: ( ~yes ) Please tell me the list ? 
+
+    #! never
+    a: ( ~no ) Good day please contact us at our shop if you need assistance. 
+
+
+

@@ -1,0 +1,22 @@
+
+topic: ~INTRODUCTIONS (~emogoodbye ~emohello ~emohowzit name here )
+
+#!x will match on every return start of a conversation 
+t: ( %input<%userfirstline %input>0 ) 
+	^keep()  
+	[Welcome back] [Hello, again.][Glad you came back.][Hi.][Hi, again.]
+
+#!x matches every time on startup of a new conversation
+t: ( %input<%userfirstline ) 
+	^keep()   
+	Welcome to Annachi Kadai.
+
+#!x issued only once, then erased
+t: Welcome to Annachi Kadai , First time ah ?
+	
+	a: (~no) Welcome back!
+	
+	a: (~yes) Please visit our shop Annachi Kadai.
+
+#! what is your name 
+u: ( what is your name ) My name is Annachi.
