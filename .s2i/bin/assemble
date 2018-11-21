@@ -119,7 +119,7 @@ local maven_args=${MAVEN_ARGS:--e -Popenshift -DskipTests -Dcom.redhat.xpaas.rep
 echo "Found pom.xml ... "
 local mvn_cmd="${maven_env_args} ${maven_args} --batch-mode -Djava.net.preferIPv4Stack=true ${MAVEN_ARGS_APPEND}"
 mvn ${maven_env_args} install:install-file -Dfile=/tmp/src/depends/camel-chatscript-1.0-SNAPSHOT.jar -DgroupId=org.apache.camel.component -DartifactId=camel-chatscript -Dversion=1.0-SNAPSHOT -Dpackaging=jar
-
+cd /tmp
 echo "Downloading CS from https://github.com/bwilcox-1234/ChatScript/archive/master.zip"
 curl -L https://github.com/bwilcox-1234/ChatScript/archive/master.zip > /tmp/ChatScriptNLP2.zip 
 #echo "-----Start Unzip chatscript---"
@@ -130,7 +130,7 @@ cp -R /tmp/src/RAWDATA/* /tmp/ChatScript-master/RAWDATA/
 chmod 755 /tmp/ChatScript-master/BINARIES/LinuxChatScript64
 ls -lrt /tmp
 echo "-----End Unzip chatscript---"
-
+cd -
 echo "Running 'mvn ${mvn_cmd}'"
 
 local old_dir=$(pwd)
