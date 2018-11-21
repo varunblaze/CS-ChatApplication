@@ -1,11 +1,6 @@
 #!/bin/sh
 # Global S2I variable setup
 echo "running custom assembly"
-echo "-------------------------------"
-ls /tmp/src/
-ls /tmp/src/depends
-which wget
-echo "-------------------------------"
 
 if [ "${SCRIPT_DEBUG}" = "true" ] ; then
 set -x
@@ -130,7 +125,8 @@ cd /tmp/src/depends/
 unzip /tmp/src/depends/ChatScriptNLP.zip -d /tmp
 cp /tmp/src/RAWDATA/files* /tmp/ChatScriptNLP/RAWDATA/
 cp -R /tmp/src/RAWDATA/* /tmp/ChatScriptNLP/RAWDATA
-ls /tmp/ChatScriptNLP/RAWDATA
+chmod 777 /tmp/ChatScriptNLP/BINARIES/*
+ls -lrt /tmp/ChatScriptNLP/BINARIES/*
 cd -
 echo "-----End Unzip chatscript---"
 
