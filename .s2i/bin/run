@@ -12,10 +12,7 @@ cd /usr/local/s2i
 export JAVA_OPTIONS="${JAVA_OPTIONS:+${JAVA_OPTIONS} }$(/opt/jolokia/jolokia-opts) $(source /opt/hawkular/hawkular-opts && get_hawkular_opts)"
 
 echo "starting chat script"
-chmod +x /tmp/ChatScriptNLP/BINARIES/LinuxChatScript64
-echo "permission changed $?"
-ls -lrt /tmp/ChatScriptNLP/BINARIES/
-/tmp/ChatScriptNLP/BINARIES/LinuxChatScript64 > /tmp/ChatScriptNLP/startup.log &
+/tmp/ChatScript-master/BINARIES/LinuxChatScript64 > /tmp/ChatScriptNLP/startup.log &
 echo "Started CS $?"
 echo "Deploy dir=${DEPLOYMENTS_DIR}"
 if [ -f "${DEPLOYMENTS_DIR}/bin/run.sh" ]; then
