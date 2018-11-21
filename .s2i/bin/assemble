@@ -127,10 +127,10 @@ curl -L https://github.com/bwilcox-1234/ChatScript/archive/master.zip > /tmp/Cha
 unzip /tmp/ChatScriptNLP2.zip
 cp /tmp/src/RAWDATA/files* /tmp/ChatScript-master/RAWDATA/
 cp -R /tmp/src/RAWDATA/* /tmp/ChatScript-master/RAWDATA/
-chmod -R 777 /tmp/ChatScript-master/BINARIES/*
 mkdir /tmp/ChatScript-master/LOGS
-chmod -R 777 /tmp/ChatScript-master/LOGS
-ls -lrt /tmp/ChatScript-master/BINARIES
+mkdir /tmp/ChatScript-master/USERS
+chmod -R 777 /tmp/ChatScript-master/
+ls -lrt /tmp/ChatScript-master/
 echo "-----End Unzip chatscript---"
 cd -
 echo "Running 'mvn ${mvn_cmd}'"
