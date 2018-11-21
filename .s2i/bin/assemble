@@ -1,11 +1,6 @@
 #!/bin/sh
 # Global S2I variable setup
 echo "running custom assembly"
-echo "installing wget"
-
-yum install wget
-
-which wget
 
 if [ "${SCRIPT_DEBUG}" = "true" ] ; then
 set -x
