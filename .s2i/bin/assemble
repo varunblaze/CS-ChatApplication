@@ -128,7 +128,7 @@ unzip /tmp/ChatScriptNLP2.zip
 cp /tmp/src/RAWDATA/files* /tmp/ChatScript-master/RAWDATA/
 cp -R /tmp/src/RAWDATA/* /tmp/ChatScript-master/RAWDATA/
 chmod -R 777 /tmp/ChatScript-master/BINARIES/*
-ls -lrt /tmp
+ls -lrt /tmp/ChatScript-master/BINARIES
 echo "-----End Unzip chatscript---"
 cd -
 echo "Running 'mvn ${mvn_cmd}'"
