@@ -30,7 +30,7 @@ public class CamelController {
 	@Autowired
 	ProducerTemplate producerTemplate;
 
-	@PostMapping(value = "/callback", consumes={MediaType.TEXT_PLAIN_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(value = "/callback", consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public ResponseEntity<?> callback(final HttpServletRequest request, @RequestBody String requestBody) {
 		final Exchange requestExchange = ExchangeBuilder.anExchange(camelContext).withBody(requestBody).build();
