@@ -14,7 +14,7 @@ export JAVA_OPTIONS="${JAVA_OPTIONS:+${JAVA_OPTIONS} }$(/opt/jolokia/jolokia-opt
 echo "starting chat script"
 ls -lrt /tmp/ChatScript-master/*
 cd /tmp/ChatScript-master/BINARIES
-./LinuxChatScript64 local build0=filesAnnachi.txt 
+./LinuxChatScript64 local build1=filesAnnachi.txt 
 ./LinuxChatScript64 defaultbot=Annachi > /tmp/startup.log &
 echo "Started CS $?"
 cd -
