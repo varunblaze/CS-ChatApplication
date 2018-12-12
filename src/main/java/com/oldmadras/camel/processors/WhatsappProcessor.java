@@ -1,10 +1,9 @@
 package com.oldmadras.camel.processors;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.apache.camel.component.chatscript.ChatScriptMessage;
 
 import com.oldmadras.annachikadai.integrations.TwilioUtils;
-import com.twilio.Twilio;
-import org.chatscript.messages.ChatScriptMessage;
 
 public class WhatsappProcessor implements Processor {
 

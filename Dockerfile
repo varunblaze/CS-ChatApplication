@@ -15,7 +15,7 @@ RUN mvn install:install-file -Dfile=/tmp/chatapp/depends/camel-chatscript-2.24.0
 RUN mvn package
 #COPY target/cschatapplication-0.0.1-SNAPSHOT.jar /deployments
 RUN set -ex \
-    && && wget https://github.com/bwilcox-1234/ChatScript/archive/master.zip \
+    && wget https://github.com/bwilcox-1234/ChatScript/archive/master.zip \
     && unzip master.zip \
     && chmod 755 ./ChatScript-master/BINARIES/LinuxChatScript64
 # we want to install the client script so its easy to talk to the bot
@@ -26,13 +26,13 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN { echo '#!/bin/bash'; \
       echo 'set -e'; \
  	  echo 'cd /tmp/chatapp/ChatScript-master'; \
-      echo 'cp -R /tmp/chatapp/RAWDATA/* ./RAWDATA';\
+      echo 'cp -R /tmp/chatapp/RAWDATA/ ./RAWDATA';\
       echo './BINARIES/LinuxChatScript64 &'; \
       echo 'cd /tmp/chatapp/target';\
       echo 'java -jar cschatapplication-0.0.1-SNAPSHOT.jar'; \
     } > /entrypoint-chatscript.sh \
  && chmod +x /entrypoint-chatscript.sh
-COPY RAWDATA/* ./ChatScript-master/RAWDATA/
+COPY RAWDATA ./ChatScript-master/RAWDATA/
 RUN ls /tmp/chatapp/ChatScript-master/RAWDATA/
 EXPOSE 1024 8080
 # startup

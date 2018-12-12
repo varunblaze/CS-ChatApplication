@@ -1,7 +1,7 @@
 package com.oldmadras.camel.processors;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.chatscript.messages.ChatScriptMessage;
+import org.apache.camel.component.chatscript.ChatScriptMessage;
 
 
 public class CallBackProcessor implements Processor {
