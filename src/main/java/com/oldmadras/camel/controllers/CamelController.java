@@ -10,10 +10,13 @@ import org.apache.camel.component.chatscript.ChatScriptMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.oldmadras.annachikadai.integrations.TwilioCallBackMessage;
 
 @RestController 
 public class CamelController {
@@ -24,18 +27,21 @@ public class CamelController {
 	@Autowired
 	ProducerTemplate producerTemplate;
 
-	@PostMapping(value = "/callback", consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(value = "/callback", consumes="application/x-www-form-urlencoded; charset=utf-8", produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public ResponseEntity<?> callback(final HttpServletRequest request, @RequestBody String requestBody) {
-		final Exchange requestExchange = ExchangeBuilder.anExchange(camelContext).withBody(requestBody).build();
-		System.out.println("In Call back " + requestBody);
-		final Exchange responseExchange = producerTemplate.send("direct:callback", requestExchange);
-		final String responseBody = responseExchange.getOut().getBody(String.class);
+	public ResponseEntity<?> callback(final HttpServletRequest request, @ModelAttribute TwilioCallBackMessage requestBody) {
+		System.out.println("In Call back " + requestBody.getBody());
+		ChatScriptMessage m= new ChatScriptMessage(requestBody.getFrom(),"",requestBody.getBody());
+		//-------------------------------------------------------
+		//----------------------------------------------------requestExchrequestExchangerequestExchangerequestExchangerequestExchangeangerequestExchange
+		final Exchange requestExchange = ExchangeBuilder.anExchange(camelContext).withBody(m).build();
+		final Exchange responseExchange = producerTemplate.send("direct:chat", requestExchange);
+		final ChatScriptMessage responseBody = responseExchange.getOut().getBody(ChatScriptMessage.class);
 		final int responseCode = responseExchange.getOut().getHeader(Exchange.HTTP_RESPONSE_CODE, Integer.class).intValue();
 		return ResponseEntity.status(responseCode).body(responseBody);
 	}
 	
-	@PostMapping(value = "/chat", produces = "application/json", consumes = "application/json")
+	@PostMapping(value = "/requestExchangerequestExchangechat", produces = "application/json", consumes = "application/json")
 	public @ResponseBody String chat(final HttpServletRequest request, @RequestBody ChatScriptMessage requestBody) {
 		
 		final Exchange requestExchange = ExchangeBuilder.anExchange(camelContext).withBody(requestBody).build();
