@@ -18,8 +18,8 @@ public class CamelRoutes extends RouteBuilder{
       .to("chatscript://localhost:1024/Annachi")
   //    
       .log("Chat reply: ${body}")
-     // .process(new WhatsappProcessor());
-      .process(new CallBackProcessor());
+      .process(new CallBackProcessor())
+	  .process(new WhatsappProcessor());
 	 
 	from ("direct:reset")
      .to("chatscript://localhost:1024/Annachi?resetchat=true")
