@@ -34,6 +34,7 @@ public class CamelController {
 	@ResponseBody
 	public ResponseEntity<?> callback(final HttpServletRequest request, @RequestBody String requestBody) {
 		final Exchange requestExchange = ExchangeBuilder.anExchange(camelContext).withBody(requestBody).build();
+		System.out.println("In Call back " + requestBody);
 		final Exchange responseExchange = producerTemplate.send("direct:callback", requestExchange);
 		final String responseBody = responseExchange.getOut().getBody(String.class);
 		final int responseCode = responseExchange.getOut().getHeader(Exchange.HTTP_RESPONSE_CODE, Integer.class).intValue();
