@@ -14,7 +14,7 @@ export JAVA_OPTIONS="${JAVA_OPTIONS:+${JAVA_OPTIONS} }$(/opt/jolokia/jolokia-opt
 echo "starting chat script"
 ls -lrt /tmp/ChatScript-master/*
 cd /tmp/ChatScript-master/BINARIES
-./LinuxChatScript64 > /tmp/startup.log &
+./LinuxChatScript64 local build0=filesAnnachi.txt && ./LinuxChatScript64 > /tmp/startup.log &
 echo "Started CS $?"
 cd -
 echo "Deploy dir=${DEPLOYMENTS_DIR}"
