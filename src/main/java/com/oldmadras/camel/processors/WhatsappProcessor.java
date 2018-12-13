@@ -10,7 +10,7 @@ public class WhatsappProcessor implements Processor {
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		final ChatScriptMessage body = exchange.getIn().getBody(ChatScriptMessage.class);
-		TwilioUtils.sendmessage(body.getReply());
+		TwilioUtils.sendmessage(body.getUserName(),null, body.getReply());
 		exchange.getOut().setBody(body);
 		exchange.getOut().setHeader(Exchange.HTTP_RESPONSE_CODE, 202);
 	}

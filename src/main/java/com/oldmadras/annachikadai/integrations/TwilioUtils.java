@@ -1,7 +1,8 @@
 package com.oldmadras.annachikadai.integrations;
-import org.springframework.context.annotation.Bean;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Value;
+
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 public class TwilioUtils {
@@ -21,7 +22,7 @@ public class TwilioUtils {
 		  
 	}
 	  
-	  public static void sendmessage(String message)
+	  public static void sendmessage(String from, String to, String message)
 	  {
 		  if (!init)
 		  {
@@ -30,8 +31,8 @@ public class TwilioUtils {
 		  }
 		    
 		  Message message1 = Message.creator(
-	                new com.twilio.type.PhoneNumber("whatsapp:" + SOURCE_NUMBER ),
-	                new com.twilio.type.PhoneNumber("whatsapp:" +TARGET_NUMBER),
+	                new com.twilio.type.PhoneNumber(Optional.ofNullable(from).orElse("whatsapp:" + SOURCE_NUMBER) ),
+	                new com.twilio.type.PhoneNumber("whatsapp:" +Optional.ofNullable(to).orElse(TARGET_NUMBER)),
 	                message)
 	            .create();
 	  }
