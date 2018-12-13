@@ -12,14 +12,14 @@ public class CamelRoutes extends RouteBuilder{
 		from("direct:firstRoute")
 			.log("Camel sssbody: ${body}");
 		from ("direct:callback")
-		  .process(new CallBackProcessor());
-		 
+		 .to("chatscript://localhost:1024/Annachi")
+	      .log("Chat reply: ${body}")
+		  .process(new WhatsappProcessor());
 	from ("direct:chat")
       .to("chatscript://localhost:1024/Annachi")
-  //    
       .log("Chat reply: ${body}")
-      .process(new CallBackProcessor())
-	  .process(new WhatsappProcessor());
+      .process(new CallBackProcessor());
+//	  .process(new WhatsappProcessor());
 	 
 	from ("direct:reset")
      .to("chatscript://localhost:1024/Annachi?resetchat=true")

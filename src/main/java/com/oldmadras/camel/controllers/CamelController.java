@@ -35,8 +35,9 @@ public class CamelController {
 		//-------------------------------------------------------
 		//----------------------------------------------------requestExchrequestExchangerequestExchangerequestExchangerequestExchangeangerequestExchange
 		final Exchange requestExchange = ExchangeBuilder.anExchange(camelContext).withBody(m).build();
-		final Exchange responseExchange = producerTemplate.send("direct:chat", requestExchange);
+		final Exchange responseExchange = producerTemplate.send("direct:callback", requestExchange);
 		final ChatScriptMessage responseBody = responseExchange.getOut().getBody(ChatScriptMessage.class);
+		System.out.println("chat message "+ responseBody);
 		final int responseCode = responseExchange.getOut().getHeader(Exchange.HTTP_RESPONSE_CODE, Integer.class).intValue();
 		return ResponseEntity.status(responseCode).body(responseBody);
 	}
