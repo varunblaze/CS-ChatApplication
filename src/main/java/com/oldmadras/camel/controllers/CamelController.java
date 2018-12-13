@@ -42,7 +42,7 @@ public class CamelController {
 		return ResponseEntity.status(responseCode).body(responseBody);
 	}
 	
-	@PostMapping(value = "/requestExchangerequestExchangechat", produces = "application/json", consumes = "application/json")
+	@PostMapping(value = "/chat", produces = "application/json", consumes = "application/json")
 	public @ResponseBody String chat(final HttpServletRequest request, @RequestBody ChatScriptMessage requestBody) {
 		
 		final Exchange requestExchange = ExchangeBuilder.anExchange(camelContext).withBody(requestBody).build();
