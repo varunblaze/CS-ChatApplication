@@ -16,13 +16,13 @@ public class CamelRoutes extends RouteBuilder{
 	      .log("Chat reply: ${body}")
 		  .process(new WhatsappProcessor());
 	from ("direct:chat")
-      .to("chatscript://localhost:1024/Annachi")
+      .to("chatscript://localhost:1024/Harry")
       .log("Chat reply: ${body}")
       .process(new CallBackProcessor());
 //	  .process(new WhatsappProcessor());
 	 
 	from ("direct:reset")
-     .to("chatscript://localhost:1024/Annachi?resetchat=true")
+     .to("chatscript://localhost:1024/Annachi")
  //    .process(new CallBackProcessor());
      ;//  .process(new WhatsappProcessor());
 	  
